@@ -213,3 +213,21 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', animateTimeline);
     animateTimeline(); // Run once on load
 });
+// Add this JavaScript for extra interactivity
+document.querySelectorAll('.skill-logo').forEach(skill => {
+    skill.addEventListener('mousemove', (e) => {
+        const x = e.pageX - skill.getBoundingClientRect().left;
+        const y = e.pageY - skill.getBoundingClientRect().top;
+        
+        skill.style.setProperty('--mouse-x', `${x}px`);
+        skill.style.setProperty('--mouse-y', `${y}px`);
+    });
+    
+    // Add click effect
+    skill.addEventListener('click', () => {
+        skill.classList.add('clicked');
+        setTimeout(() => {
+            skill.classList.remove('clicked');
+        }, 500);
+    });
+});
