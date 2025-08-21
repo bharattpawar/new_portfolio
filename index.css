@@ -221,10 +221,12 @@ a {
 }
 
 .logo-img {
-    height: clamp(2.5rem, 3.5vw, 4rem);
-    width: clamp(2.5rem, 3.5vw, 4rem);
+    height: clamp(6.5rem, 3.5vw, 4rem);
+    width: clamp(5.5rem, 6.5vw, 4rem);
     border-radius: 50%;
     object-fit: cover;
+    position: relative;
+    bottom: 4px;
 }
 
 .logo {
