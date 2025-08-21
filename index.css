@@ -16,6 +16,19 @@
     --border-radius: 12px;
 }
 
+/* Light Theme Variables */
+[data-theme="light"] {
+    --primary-color: #6e57e0;
+    --secondary-color: #f8f9fa;
+    --accent-color: #ff6b6b;
+    --text-color: #2c3e50;
+    --text-secondary: #6c757d;
+    --bg-color: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --card-bg: #ffffff;
+    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -37,6 +50,7 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Ensure consistent background throughout the page */
@@ -200,6 +214,13 @@ a {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* Light theme navbar adjustments */
+[data-theme="light"] .navbar.scrolled {
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 /* Blur effect for content behind navbar */
 .navbar::before {
     content: '';
@@ -359,6 +380,12 @@ a {
     border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* Light theme adjustments for off-screen menu */
+[data-theme="light"] .off-screen-menu {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 .off-screen-menu.active {
     right: 0;
 }
@@ -376,6 +403,37 @@ a {
     font-size: clamp(1.6rem, 2vw, 2rem);
     padding: 1rem 2rem;
     display: inline-block;
+}
+
+/* Close button for off-screen menu */
+.menu-close-btn {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(110, 87, 224, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.8rem;
+    color: var(--text-color);
+}
+
+.menu-close-btn:hover {
+    transform: scale(1.1);
+    background: rgba(110, 87, 224, 0.2);
+}
+
+/* Light theme adjustments for close button */
+[data-theme="light"] .menu-close-btn {
+    background: rgba(110, 87, 224, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 /* Hero Section - Updated Layout */
@@ -534,7 +592,7 @@ a {
 /* Mobile adjustments for scroll indicator */
 @media (max-width: 768px) {
     .scroll-indicator {
-        bottom: clamp(0.3rem, 1vw, 1.5rem); /* Reduce bottom spacing on mobile */
+        bottom: clamp(0.2rem, 0.8vw, 1rem); /* Further reduce bottom spacing on mobile */
     }
 }
 
@@ -639,7 +697,7 @@ a {
 .image-overlay p {
     color: var(--text-secondary);
 }
-/* Skills section variables updated to match dark theme */
+/* Skills section variables updated to match theme */
 
 .skills-container {
     margin-top: 4rem;
@@ -652,6 +710,14 @@ a {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     position: relative;
     overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+/* Light theme adjustments for skills container */
+[data-theme="light"] .skills-container {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .skills-container::before {
@@ -720,10 +786,23 @@ a {
     z-index: 1;
 }
 
+/* Light theme adjustments for skill logos */
+[data-theme="light"] .skill-logo {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
 .skill-logo:hover {
     transform: translateY(-10px) scale(1.05);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
     background: rgba(110, 87, 224, 0.2);
+}
+
+/* Light theme hover adjustments for skill logos */
+[data-theme="light"] .skill-logo:hover {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    background: rgba(110, 87, 224, 0.1);
 }
 
 .skill-logo::before {
@@ -1335,15 +1414,15 @@ textarea.form-input {
 
 @media (max-width: 768px) {
     .hero-section {
-        min-height: 90vh; /* Reduce height for mobile */
-        padding-bottom: 2rem; /* Add bottom padding */
+        min-height: 85vh; /* Further reduce height for mobile */
+        padding-bottom: 1rem; /* Reduce bottom padding */
     }
     
     .hero-content {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: clamp(1rem, 2vw, 2rem); /* Reduce gap */
+        gap: clamp(0.8rem, 1.5vw, 1.5rem); /* Further reduce gap */
         position: relative;
         left: 5rem;
         height: 100%; /* Take full height */
@@ -1358,9 +1437,9 @@ textarea.form-input {
     .hero-image {
         max-width: 85%;
         justify-content: center;
-        margin-top: clamp(0.5rem, 1vw, 1rem); /* Reduce top margin */
+        margin-top: clamp(0.3rem, 0.8vw, 0.8rem); /* Further reduce top margin */
         margin-right: 0; /* Reset margin for mobile */
-        margin-bottom: 1rem; /* Add bottom margin */
+        margin-bottom: 0.5rem; /* Reduce bottom margin */
     }
     
     .hero-image img {
@@ -1532,7 +1611,152 @@ textarea.form-input {
     }
 }
 
-/* Animations */
+/* Loading Screen */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--bg-color), var(--bg-secondary));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loading-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader {
+    text-align: center;
+}
+
+.loader-text {
+    font-size: 2.4rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 2rem;
+    animation: pulse 2s infinite;
+}
+
+.loader-bar {
+    width: 200px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.loader-progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    border-radius: 2px;
+    animation: loading 2s ease-in-out infinite;
+}
+
+@keyframes loading {
+    0% { width: 0%; }
+    50% { width: 70%; }
+    100% { width: 100%; }
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    position: fixed;
+    z-index: 1001;
+}
+
+.toggle-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(110, 87, 224, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    top: 6px;
+    left: 110px;
+    overflow: hidden;
+}
+
+/* Mobile theme toggle inside hamburger menu */
+.theme-toggle-mobile {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem; position: relative;
+    bottom: 6px;
+    right: 110px;
+}
+
+.theme-toggle-mobile .toggle-btn {
+    width: 45px;
+    height: 45px;
+    background: rgba(110, 87, 224, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Light theme adjustments for mobile toggle */
+[data-theme="light"] .theme-toggle-mobile .toggle-btn {
+    background: rgba(110, 87, 224, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.toggle-btn:hover {
+    transform: scale(1.1);
+    background: rgba(110, 87, 224, 0.2);
+}
+
+.toggle-btn i {
+    font-size: 1.8rem;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.toggle-btn .fa-sun {
+    opacity: 1;
+    transform: rotate(0deg);
+}
+
+.toggle-btn .fa-moon {
+    opacity: 0;
+    transform: rotate(180deg);
+    position: absolute;
+}
+
+.toggle-btn.dark .fa-sun {
+    opacity: 0;
+    transform: rotate(180deg);
+}
+
+.toggle-btn.dark .fa-moon {
+    opacity: 1;
+    transform: rotate(0deg);
+}
+
+/* Particle Background */
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Enhanced Animations */
 @keyframes slideInLeft {
     from { transform: translateX(-100%); opacity: 0; }
     to { transform: translateX(0); opacity: 1; }
@@ -1548,6 +1772,16 @@ textarea.form-input {
     to { opacity: 1; }
 }
 
+@keyframes floatUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
 .slide-in-left {
     animation: slideInLeft 1s ease forwards;
 }
@@ -1558,4 +1792,127 @@ textarea.form-input {
 
 .fade-in {
     animation: fadeIn 1s ease forwards;
+}
+
+.float-up {
+    animation: floatUp 0.8s ease forwards;
+}
+
+.scale-in {
+    animation: scaleIn 0.6s ease forwards;
+}
+
+/* Enhanced Skill Bars */
+.skill-progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+
+.skill-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    border-radius: 4px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.skill-progress-fill.animate {
+    transform: scaleX(1);
+}
+
+/* Enhanced Project Cards */
+.project-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(110, 87, 224, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.project-card:hover::before {
+    left: 100%;
+}
+
+/* Enhanced Buttons */
+.cta-btn, .contact-btn, .submit-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-btn::before, .contact-btn::before, .submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.cta-btn:hover::before, .contact-btn:hover::before, .submit-btn:hover::before {
+    left: 100%;
+}
+
+/* Scroll Progress Bar */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    z-index: 1002;
+    transition: width 0.1s ease;
+}
+
+/* Enhanced Typography */
+.gradient-text {
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientShift 3s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% { filter: hue-rotate(0deg); }
+    50% { filter: hue-rotate(30deg); }
+}
+
+/* Responsive Enhancements */
+@media (max-width: 768px) {
+    .theme-toggle {
+        display: none; /* Hide fixed theme toggle on mobile */
+    }
+    
+    .toggle-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .toggle-btn i {
+        font-size: 1.4rem;
+    }
+}
+
+/* Desktop adjustments for better alignment */
+@media (min-width: 769px) {
+    .theme-toggle {
+        top: 2rem; /* Better alignment */
+        right: 12rem; /* More space from edge */
+    }
 }
