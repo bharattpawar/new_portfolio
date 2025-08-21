@@ -1,4 +1,161 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize loading screen
+    const loadingScreen = document.querySelector('.loading-screen');
+    
+    // Hide loading screen after 2 seconds
+    setTimeout(() => {
+        loadingScreen.classList.add('hidden');
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+        }, 500);
+    }, 2000);
+
+    // Initialize particles
+    if (typeof particlesJS !== 'undefined') {
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: '#6e57e0'
+                },
+                shape: {
+                    type: 'circle',
+                    stroke: {
+                        width: 0,
+                        color: '#000000'
+                    }
+                },
+                opacity: {
+                    value: 0.5,
+                    random: false,
+                    anim: {
+                        enable: false,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: {
+                        enable: false,
+                        speed: 40,
+                        size_min: 0.1,
+                        sync: false
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#6e57e0',
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 6,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false,
+                    attract: {
+                        enable: false,
+                        rotateX: 600,
+                        rotateY: 1200
+                    }
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: 'repulse'
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: 'push'
+                    },
+                    resize: true
+                },
+                modes: {
+                    grab: {
+                        distance: 400,
+                        line_linked: {
+                            opacity: 1
+                        }
+                    },
+                    bubble: {
+                        distance: 400,
+                        size: 40,
+                        duration: 2,
+                        opacity: 8,
+                        speed: 3
+                    },
+                    repulse: {
+                        distance: 200,
+                        duration: 0.4
+                    },
+                    push: {
+                        particles_nb: 4
+                    },
+                    remove: {
+                        particles_nb: 2
+                    }
+                }
+            },
+            retina_detect: true
+        });
+    }
+
+    // Theme toggle functionality
+    const themeToggles = document.querySelectorAll('.toggle-btn');
+    const body = document.body;
+    
+    // Check for saved theme preference or default to dark
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    body.setAttribute('data-theme', currentTheme);
+    
+    // Update all toggle buttons
+    themeToggles.forEach(toggle => {
+        toggle.classList.toggle('dark', currentTheme === 'light');
+    });
+    
+    // Add event listeners to all toggle buttons
+    themeToggles.forEach(toggle => {
+        toggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            body.setAttribute('data-theme', newTheme);
+            
+            // Update all toggle buttons
+            themeToggles.forEach(t => {
+                t.classList.toggle('dark', newTheme === 'light');
+            });
+            
+            localStorage.setItem('theme', newTheme);
+        });
+    });
+
+    // Scroll progress bar
+    const scrollProgress = document.querySelector('.scroll-progress');
+    
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset;
+        const docHeight = document.body.offsetHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        scrollProgress.style.width = scrollPercent + '%';
+    });
+
     // Navbar scroll effect
     const navbar = document.querySelector('.navbar');
     const hamMenu = document.querySelector('.ham-menu');
@@ -45,6 +202,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // Close mobile menu when clicking close button
+    const menuCloseBtn = document.querySelector('.menu-close-btn');
+    if (menuCloseBtn) {
+        menuCloseBtn.addEventListener('click', () => {
+            hamMenu.classList.remove('active');
+            offScreenMenu.classList.remove('active');
+        });
+    }
+    
     // Create blur overlay element
     const blurOverlay = document.createElement('div');
     blurOverlay.classList.add('navbar-blur-overlay');
@@ -85,7 +251,13 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Enhanced background opacity based on scroll
             const opacity = Math.min(0.1 + (scrollY / 2000), 0.3);
-            navbar.style.backgroundColor = `rgba(15, 15, 15, ${opacity})`;
+            const currentTheme = body.getAttribute('data-theme');
+            
+            if (currentTheme === 'light') {
+                navbar.style.backgroundColor = `rgba(255, 255, 255, ${opacity + 0.8})`;
+            } else {
+                navbar.style.backgroundColor = `rgba(15, 15, 15, ${opacity})`;
+            }
         } else {
             navbar.classList.remove('scrolled');
             blurOverlay.classList.remove('active');
@@ -265,21 +437,47 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', animateTimeline);
     animateTimeline(); // Run once on load
 });
-// Add this JavaScript for extra interactivity
-document.querySelectorAll('.skill-logo').forEach(skill => {
-    skill.addEventListener('mousemove', (e) => {
-        const x = e.pageX - skill.getBoundingClientRect().left;
-        const y = e.pageY - skill.getBoundingClientRect().top;
-        
-        skill.style.setProperty('--mouse-x', `${x}px`);
-        skill.style.setProperty('--mouse-y', `${y}px`);
-    });
+    // Enhanced skill bars animation
+    const skillBars = document.querySelectorAll('.skill-progress-fill');
     
-    // Add click effect
-    skill.addEventListener('click', () => {
-        skill.classList.add('clicked');
-        setTimeout(() => {
-            skill.classList.remove('clicked');
-        }, 500);
+    const animateSkillBars = () => {
+        skillBars.forEach(bar => {
+            const proficiency = bar.getAttribute('data-proficiency');
+            bar.style.width = proficiency;
+            
+            // Trigger animation when in view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            bar.classList.add('animate');
+                        }, 300);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+            
+            observer.observe(bar);
+        });
+    };
+    
+    animateSkillBars();
+
+    // Add this JavaScript for extra interactivity
+    document.querySelectorAll('.skill-logo').forEach(skill => {
+        skill.addEventListener('mousemove', (e) => {
+            const x = e.pageX - skill.getBoundingClientRect().left;
+            const y = e.pageY - skill.getBoundingClientRect().top;
+            
+            skill.style.setProperty('--mouse-x', `${x}px`);
+            skill.style.setProperty('--mouse-y', `${y}px`);
+        });
+        
+        // Add click effect
+        skill.addEventListener('click', () => {
+            skill.classList.add('clicked');
+            setTimeout(() => {
+                skill.classList.remove('clicked');
+            }, 500);
+        });
     });
-});
