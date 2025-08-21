@@ -489,24 +489,27 @@ a {
     flex: 1.5;
     display: flex;
     justify-content: flex-end;
-     
     align-items: center;
-      order: 2;
+    order: 2;
+    margin-right: -100px; /* Move image even more to the right */
 }
 
 .hero-image img {
     max-width: 100%;
-    width: clamp(400px, 70vw, 1000px);
+    width: clamp(450px, 75vw, 1100px); /* Made image bigger */
     height: auto;
-    max-height: clamp(400px, 80vh, 1000px);
+    max-height: clamp(450px, 85vh, 1100px); /* Increased max height */
     object-fit: contain;
-     animation: float 6s ease-in-out infinite;
-    transition: transform 0.3s ease;
-     transform: translateX(50px);
+    animation: float 6s ease-in-out infinite;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translateX(120px); /* Move even more to the right */
+    filter: drop-shadow(0 10px 20px rgba(110, 87, 224, 0.2));
 }
 
 .hero-image img:hover {
-    transform: rotate(5deg) scale(1.05);
+    transform: translateX(120px) rotate(15deg) scale(1.1); /* Enhanced hover effect with more rotation */
+    filter: drop-shadow(0 20px 40px rgba(110, 87, 224, 0.4));
+    animation-play-state: paused; /* Pause float animation on hover */
 }
 
 @keyframes float {
@@ -524,6 +527,13 @@ a {
     flex-direction: column;
     align-items: center;
     cursor: pointer;
+}
+
+/* Mobile adjustments for scroll indicator */
+@media (max-width: 768px) {
+    .scroll-indicator {
+        bottom: clamp(0.3rem, 1vw, 1.5rem); /* Reduce bottom spacing on mobile */
+    }
 }
 
 .scroll-text {
@@ -1303,11 +1313,17 @@ textarea.form-input {
     
     .hero-image {
         max-width: 45%;
+        margin-right: -60px; /* Adjust for smaller screens */
     }
     
     .hero-image img {
-        width: clamp(250px, 45vw, 700px);
-        max-height: clamp(250px, 55vh, 700px);
+        width: clamp(280px, 50vw, 750px);
+        max-height: clamp(280px, 60vh, 750px);
+        transform: translateX(80px); /* Adjust position for smaller screens */
+    }
+    
+    .hero-image img:hover {
+        transform: translateX(80px) rotate(15deg) scale(1.1);
     }
     
     .projects-container {
@@ -1316,13 +1332,19 @@ textarea.form-input {
 }
 
 @media (max-width: 768px) {
+    .hero-section {
+        min-height: 90vh; /* Reduce height for mobile */
+        padding-bottom: 2rem; /* Add bottom padding */
+    }
+    
     .hero-content {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: clamp(1rem, 2vw, 3rem);
+        gap: clamp(1rem, 2vw, 2rem); /* Reduce gap */
         position: relative;
         left: 5rem;
+        height: 100%; /* Take full height */
     }
     
     .hero-text {
@@ -1334,12 +1356,19 @@ textarea.form-input {
     .hero-image {
         max-width: 85%;
         justify-content: center;
-        margin-top: clamp(1rem, 2vw, 2rem);
+        margin-top: clamp(0.5rem, 1vw, 1rem); /* Reduce top margin */
+        margin-right: 0; /* Reset margin for mobile */
+        margin-bottom: 1rem; /* Add bottom margin */
     }
     
     .hero-image img {
-        width: clamp(250px, 65vw, 550px);
-        max-height: clamp(250px, 50vh, 550px);
+        width: clamp(250px, 65vw, 550px); /* Slightly smaller */
+        max-height: clamp(250px, 50vh, 550px); /* Reduce max height */
+        transform: translateX(0); /* Reset transform for mobile */
+    }
+    
+    .hero-image img:hover {
+        transform: rotate(15deg) scale(1.1); /* Enhanced rotation for mobile */
     }
     
     .social-links {
@@ -1354,10 +1383,11 @@ textarea.form-input {
 @media (max-width: 576px) {
     .hero-section {
         padding-top: clamp(3rem, 6vw, 6rem);
+        min-height: 85vh; /* Further reduce height for smaller screens */
     }
     
     .hero-content {
-        gap: clamp(0.8rem, 1.5vw, 2rem);
+        gap: clamp(0.6rem, 1.2vw, 1.5rem); /* Reduce gap further */
     }
     
     .hero-text {
@@ -1385,6 +1415,11 @@ textarea.form-input {
         width: clamp(20px, 3vw, 40px);
         height: clamp(20px, 3vw, 40px);
         font-size: clamp(0.9rem, 1.3vw, 1.6rem);
+    }
+    
+    .hero-image {
+        margin-top: clamp(0.3rem, 0.8vw, 0.8rem); /* Reduce top margin */
+        margin-bottom: 0.5rem; /* Reduce bottom margin */
     }
     
     .hero-image img {
