@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress"></div>
+    
     <!-- Navigation -->
     <nav class="navbar">
         <div class="logo-container">
@@ -30,15 +33,24 @@
         </div>
     </nav>
     
-    <div class="off-screen-menu">
-        <ul>
-            <li><a href="#home" class="nav-link">Home</a></li>
-            <li><a href="#about" class="nav-link">About</a></li>
-            <li><a href="#education" class="nav-link">Education</a></li>
-            <li><a href="#projects" class="nav-link">Projects</a></li>
-            <li><a href="#contact" class="nav-link">Contact</a></li>
-        </ul>
-    </div>
+            <div class="off-screen-menu">
+            <button class="menu-close-btn">
+                <i class="fas fa-times"></i>
+            </button>
+            <ul>
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li class="theme-toggle-mobile">
+                    <div class="toggle-btn">
+                        <i class="fas fa-sun"></i>
+                        <i class="fas fa-moon"></i>
+                    </div>
+                </li>
+            </ul>
+        </div>
 
     <!-- Hero Section -->
     <section id="home" class="hero-section section">
@@ -105,6 +117,9 @@
                                 <div class="skill-inner">
                                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML">
                                     <span>HTML5</span>
+                                    <div class="skill-progress-bar">
+                                        <div class="skill-progress-fill" data-proficiency="95%"></div>
+                                    </div>
                                 </div>
                                 <div class="skill-wave"></div>
                             </div>
@@ -230,6 +245,31 @@
                                 <div class="skill-inner">
                                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" alt="Git Bash">
                                     <span>Git Bash</span>
+                                </div>
+                                <div class="skill-wave"></div>
+                            </div>
+                    
+                            <!-- Blockchain & AI Technologies -->
+                            <div class="skill-logo" data-proficiency="75%">
+                                <div class="skill-inner">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/solidity/solidity-original.svg" alt="Solidity">
+                                    <span>Solidity</span>
+                                </div>
+                                <div class="skill-wave"></div>
+                            </div>
+                    
+                            <div class="skill-logo" data-proficiency="78%">
+                                <div class="skill-inner">
+                                    <img src="https://img.icons8.com/color/96/000000/chain.png" alt="LangChain" style="filter: brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(230deg) brightness(118%) contrast(119%);">
+                                    <span>LangChain</span>
+                                </div>
+                                <div class="skill-wave"></div>
+                            </div>
+                    
+                            <div class="skill-logo" data-proficiency="85%">
+                                <div class="skill-inner">
+                                    <img src="https://img.icons8.com/color/96/000000/artificial-intelligence.png" alt="Generative AI" style="filter: brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(230deg) brightness(118%) contrast(119%);">
+                                    <span>Generative AI</span>
                                 </div>
                                 <div class="skill-wave"></div>
                             </div>
@@ -639,6 +679,28 @@
         <i class="fas fa-arrow-up"></i>
     </a>
 
+    <!-- Theme Toggle Button -->
+    <div class="theme-toggle">
+        <div class="toggle-btn">
+            <i class="fas fa-sun"></i>
+            <i class="fas fa-moon"></i>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loader">
+            <div class="loader-text">Bharat Pawar</div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="index.js"></script>
 </body>
 </html>
